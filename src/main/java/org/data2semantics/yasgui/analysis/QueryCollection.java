@@ -8,7 +8,7 @@ public class QueryCollection {
 	private ArrayList<Query> queries = new ArrayList<Query>();
 	
 	private HashMap<String, Object> endpoints = new HashMap<String, Object>();
-	private HashMap<String, String> distinctQueries = new HashMap<String, String>();
+	private HashMap<String, Query> distinctQueries = new HashMap<String, Query>();
 	int totalQueryCount = 0;
 	public QueryCollection() {
 		
@@ -17,11 +17,19 @@ public class QueryCollection {
 	
 	public void addQuery(Query query) {
 		queries.add(query);
-		distinctQueries.put(query.toString(), null);
+		if (distinctQueries.containsKey(query.toString())) {
+			distinctQueries.get(query.toString()).appendQueryObject(query);
+		} else {
+			distinctQueries.put(query.toString(), query);
+			
+		}
 		totalQueryCount += query.getCount();
-		endpoints.put(query.getEndpoint(), null);
-		
+		for (String endpoint: query.getEndpoints()) {
+			endpoints.put(endpoint, endpoint);
+		}
 	}
+	
+	
 	
 	
 	
@@ -36,8 +44,13 @@ public class QueryCollection {
 	public int getDistinctEndpoints() {
 		return endpoints.size();
 	}
+	
+	public ArrayList<Query> getQueries() {
+		return this.queries;
+	}
+	
 	public String toString() {
-		return "totalCount: " + getTotalQueryCount() + " distinct query count: " + getDistinctQueryCount() + " distinct endpoints: " + getDistinctEndpoints();
+		return "totalCount query: " + getTotalQueryCount() + " distinct query count: " + getDistinctQueryCount() + " distinct query endpoints: " + getDistinctEndpoints();
 	}
 	
 	public static void main(String[] args) {

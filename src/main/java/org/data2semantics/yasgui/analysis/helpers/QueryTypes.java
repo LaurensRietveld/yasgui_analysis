@@ -1,12 +1,12 @@
 package org.data2semantics.yasgui.analysis.helpers;
 
+import org.data2semantics.yasgui.analysis.Collection;
 import org.data2semantics.yasgui.analysis.Query;
-import org.data2semantics.yasgui.analysis.QueryCollection;
 
 public class QueryTypes extends AnalysisHelper {
 
-	public QueryTypes(QueryCollection queryCollection) {
-		super(queryCollection);
+	public QueryTypes(Collection collection) {
+		super(collection);
 	}
 
 	public void calc() {
@@ -14,7 +14,7 @@ public class QueryTypes extends AnalysisHelper {
 		int asks = 0;
 		int selects = 0;
 		int describes = 0;
-		for (Query query: queryCollection.getQueries()) {
+		for (Query query: collection.getQueryCollection().getQueries()) {
 			if (query.isConstructType()) {
 				constructs += query.getCount();
 			} else if (query.isAskType()) {

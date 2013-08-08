@@ -1,13 +1,13 @@
 package org.data2semantics.yasgui.analysis.helpers;
 
-import org.data2semantics.yasgui.analysis.QueryCollection;
+import org.data2semantics.yasgui.analysis.Collection;
 
 public abstract class AnalysisHelper {
 	
-	protected QueryCollection queryCollection;
+	protected Collection collection;
 	
-	public AnalysisHelper(QueryCollection queryCollection) {
-		this.queryCollection = queryCollection;
+	public AnalysisHelper(Collection collection) {
+		this.collection = collection;
 	}
 	public abstract void calc() throws Exception;
 }

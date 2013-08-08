@@ -1,7 +1,6 @@
 package org.data2semantics.yasgui.analysis;
 
 import java.util.HashMap;
-import java.util.Set;
 
 public class EndpointCollection {
 	
@@ -21,14 +20,22 @@ public class EndpointCollection {
 		endpoints.put(endpoint, count);
 	}
 	
-	public Set<String> getEndpoints() {
-		return this.endpoints.keySet();
+	public HashMap<String, Integer> getEndpoints() {
+		return this.endpoints;
 	}
 	
 	public int getTotalCount() {
 		int count = 0;
 		for (Integer endpointCount: endpoints.values()) {
 			count += endpointCount.intValue();
+		}
+		return count;
+	}
+	
+	public int getEndpointCount(String endpoint) {
+		int count = 0;
+		if (this.endpoints.containsKey(endpoint)) {
+			count = endpoints.get(endpoint).intValue();
 		}
 		return count;
 	}

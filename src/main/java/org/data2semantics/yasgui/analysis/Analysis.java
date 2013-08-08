@@ -1,8 +1,9 @@
 package org.data2semantics.yasgui.analysis;
 
 import org.data2semantics.yasgui.analysis.filters.SimpleBgpFilter;
+import org.data2semantics.yasgui.analysis.helpers.AccessibilityStats;
 import org.data2semantics.yasgui.analysis.helpers.AnalysisHelper;
-import org.data2semantics.yasgui.analysis.helpers.EndpointTypes;
+import org.data2semantics.yasgui.analysis.helpers.CkanStats;
 import org.data2semantics.yasgui.analysis.helpers.QueryTypes;
 import org.data2semantics.yasgui.analysis.loaders.CsvLoader;
 import org.data2semantics.yasgui.analysis.loaders.Loader;
@@ -18,19 +19,21 @@ public class Analysis {
 		System.out.println(loader.getCollection().getQueryCollection().toString());
 		System.out.println(loader.getCollection().getEndpointCollection().toString());
 		
-		runQueryAnalysis();
+//		runQueryAnalysis();
 		runEndpointAnalysis();
 	}
 	
 
 	private void runQueryAnalysis() throws Exception {
-		analysis = new QueryTypes(collection.getQueryCollection());
+		analysis = new QueryTypes(collection);
 		analysis.calc();
 	}
 	private void runEndpointAnalysis() throws Exception {
 		
 		
-		analysis = new EndpointTypes(collection.getQueryCollection());
+//		analysis = new CkanStats(collection);
+//		analysis.calc();
+		analysis = new AccessibilityStats(collection);
 		analysis.calc();
 	}
 	
